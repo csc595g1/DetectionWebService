@@ -4,10 +4,14 @@ class AppsController < ApplicationController
   before_action :register_gcm_params, only: [:register_gcm_user]
   before_action :update_gcm_params, only: [:update_gcm_user]
   before_action :all_devices_params, only: [:devices]
+  before_action :detection_params, only: [:detection]
 
   GOOGLE_API_KEY = "AIzaSyBmWXZBpk9Ua9twgOaRcig_4jN18yjKCXM"
   GOOGLE_PROJECT_NUMBER = "1006767494593"
 
+
+  def index
+  end
   def detection
     detection = Detection.new
     device = Device.find_by_serial_no(params[:serial_no])
@@ -158,6 +162,11 @@ class AppsController < ApplicationController
 
   def all_devices_params
     params.permit(:token)
+  end
+
+  def detection_params
+    params.require(:serial_no)
+    params.require(:notification)
   end
 
 end

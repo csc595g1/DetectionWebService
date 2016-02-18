@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  root 'apps#index'
 
   get '/detection' => 'apps#detection'
   get '/register_device' => 'apps#register_device'
