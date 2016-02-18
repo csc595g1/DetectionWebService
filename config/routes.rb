@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get '/register_device' => 'apps#register_device'
   get '/register_gcm_user' => 'apps#register_gcm_user'
   get '/update_gcm_user' => 'apps#update_gcm_user'
+  get '/devices' => 'apps#devices'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

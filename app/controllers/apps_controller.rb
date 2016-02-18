@@ -1,8 +1,12 @@
 class AppsController < ApplicationController
+
   before_action :device_params, only: [:register_device]
   before_action :register_gcm_params, only: [:register_gcm_user]
   before_action :update_gcm_params, only: [:update_gcm_user]
+  before_action :all_devices_params, only: [:devices]
 
+  GOOGLE_API_KEY = "AIzaSyBmWXZBpk9Ua9twgOaRcig_4jN18yjKCXM"
+  GOOGLE_PROJECT_NUMBER = "1006767494593"
 
   def detection
     detection = Detection.new
@@ -21,7 +25,31 @@ class AppsController < ApplicationController
     detection.duration_in_seconds = duration
     detection.save
 
+    user = device.user
+    if (user.nil?)
+      puts "User is null"
+      render_false
+      return
+    end
+
+
+    unless post_to_gcm detection.notification, user.token
+      "Failed to post"
+      render_false
+      return
+    end
+
     render_true
+  end
+
+  def devices
+    token = params[:token]
+    if token
+      user = User.find_by_token(token)
+      render json: Device.where(:user => user)
+    else
+      render json: Device.all
+    end
   end
 
 
@@ -50,7 +78,7 @@ class AppsController < ApplicationController
 
   def register_gcm_user
     user_token = params[:token]
-    user = user.find_by_token(user_token)
+    user = User.find_by_token(user_token)
     user ||= User.new(:token => user_token)
     user.save
     render_true
@@ -82,6 +110,37 @@ class AppsController < ApplicationController
   end
 
 
+  def post_to_gcm notification, token
+
+
+
+    to = token.split(' ')
+    data = {:message => notification}
+    headers = {
+        'project_id' => GOOGLE_PROJECT_NUMBER,
+        "Authorization" => 'key=' + GOOGLE_API_KEY,
+        'Content-Type' => 'application/json'
+    }
+    uri = URI('https://android.googleapis.com/gcm/send')
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+    post = Net::HTTP::Post.new(uri.path, headers)
+    post.body = { 'data' => data, 'registration_ids' => to}.to_json
+
+    res = http.request(post)
+
+    case res
+      when Net::HTTPSuccess, Net::HTTPRedirection
+        return true
+      else
+        return nil
+    end
+  end
+
+  private
+
   def device_params
     params.require(:token)
     params.require(:serial_no)
@@ -95,6 +154,10 @@ class AppsController < ApplicationController
   def update_gcm_params
     params.require(:old_token)
     params.require(:new_token)
+  end
+
+  def all_devices_params
+    params.permit(:token)
   end
 
 end
