@@ -56,7 +56,7 @@ class AppsController < ApplicationController
       return
     end
 
-    render_true
+    render json: detection, status: :created, location: detection
   end
 
   def smart_products
@@ -103,6 +103,8 @@ class AppsController < ApplicationController
     user.mobile_devices << mobile_device
     user.save
     render_true
+
+    render_true
   end
 
   def update_gcm_token
@@ -124,11 +126,11 @@ class AppsController < ApplicationController
  private
 
   def render_false
-      render :text => "<p>false</p>".html_safe, :status => 200
+      render :text => "Could not complete operation", :status => 400
   end
 
   def render_true
-    render :text => "<p>true</p>".html_safe, :status => 200
+    render :text => "Successful", :status => 201
   end
 
 
