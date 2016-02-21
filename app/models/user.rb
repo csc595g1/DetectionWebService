@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
   has_many :detections, :through => :smart_products
   has_many :mobile_devices
 
+  validates_uniqueness_of :email_address
+
 
 
 end
