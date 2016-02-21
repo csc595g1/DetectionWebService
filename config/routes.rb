@@ -4,9 +4,17 @@ Rails.application.routes.draw do
 
   post '/detection' => 'apps#detection'
   post '/register_smart_product' => 'apps#register_smart_product'
+
+  post '/register_mobile_device' => 'apps#register_gcm_token'
   post '/register_gcm_token' => 'apps#register_gcm_token'
+
+  post '/update_mobile_device' => 'apps#update_gcm_token'
   post '/update_gcm_token' => 'apps#update_gcm_token'
+
   get '/smart_products' => 'apps#smart_products'
+
+  get '/mobile_devices' => 'apps#mobile_devices'
+  get '/gcm_tokens' => 'apps#mobile_devices'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

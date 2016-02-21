@@ -5,6 +5,7 @@ class AppsController < ApplicationController
   before_action :update_gcm_params, only: [:update_gcm_token]
   before_action :all_smart_products_params, only: [:smart_products]
   before_action :detection_params, only: [:detection]
+  before_action :mobile_devices_params, only: [:mobile_devices]
 
   skip_before_filter :verify_authenticity_token
 
@@ -57,6 +58,12 @@ class AppsController < ApplicationController
     end
 
     render json: detection, status: :created, location: detection
+  end
+
+  def mobile_devices
+    email_address = params[:email_address]
+    user = User.find_by_email_address(email_address)
+    render json: (user.nil?) ? Array.new : user.mobile_devices
   end
 
   def smart_products
@@ -120,6 +127,8 @@ class AppsController < ApplicationController
     mobile_device.save
     render_true
   end
+
+
 
  private
 
@@ -208,6 +217,10 @@ class AppsController < ApplicationController
   def detection_params
     params.require(:serial_no)
     params.require(:notification)
+  end
+
+  def mobile_devices_params
+    params.require(:email_address)
   end
 
 end

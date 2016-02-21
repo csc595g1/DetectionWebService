@@ -10,9 +10,9 @@ class SmartProduct < ActiveRecord::Base
 
   def self.post_example
 
-    uri = URI('http://localhost:3000/register_gcm_token')
+    uri = URI('https://detectionservices.herokuapp.com/register_gcm_token')
     http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = false
+    http.use_ssl = true
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
     headers = {
