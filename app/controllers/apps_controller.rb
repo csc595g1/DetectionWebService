@@ -103,8 +103,6 @@ class AppsController < ApplicationController
     user.mobile_devices << mobile_device
     user.save
     render_true
-
-    render_true
   end
 
   def update_gcm_token
