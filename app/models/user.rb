@@ -1,9 +1,10 @@
 class User < ActiveRecord::Base
 
-  has_many :devices
-  has_many :detections, :through => :devices
+  has_many :user_smart_products
+  has_many :smart_products, :through => :user_smart_products
+  has_many :detections, :through => :smart_products
+  has_many :mobile_devices
 
-  validates_presence_of :token
-  validates_uniqueness_of :token
+
 
 end

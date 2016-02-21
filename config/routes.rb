@@ -2,11 +2,13 @@ Rails.application.routes.draw do
 
   root 'apps#index'
 
-  get '/detection' => 'apps#detection'
-  get '/register_device' => 'apps#register_device'
-  get '/register_gcm_user' => 'apps#register_gcm_user'
-  get '/update_gcm_user' => 'apps#update_gcm_user'
-  get '/devices' => 'apps#devices'
+  post '/detection' => 'apps#detection'
+  post'/register_device' => 'apps#register_smart_product'
+  post '/register_smart_product' => 'apps#register_smart_product'
+  post '/register_gcm_user' => 'apps#register_gcm_user'
+  post '/update_gcm_user' => 'apps#update_gcm_user'
+  get '/smart_products' => 'apps#smart_products'
+  get '/post_example' => 'apps#post_example'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

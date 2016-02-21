@@ -1,4 +1,3 @@
 class Detection < ActiveRecord::Base
-  belongs_to :device
-
+  belongs_to :smart_product
 end
