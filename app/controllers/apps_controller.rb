@@ -1,4 +1,3 @@
-require 'byebug'
 class AppsController < ApplicationController
 
   before_action :smart_product_params, only: [:register_smart_product]
