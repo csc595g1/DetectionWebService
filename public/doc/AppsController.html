@@ -160,7 +160,7 @@
           <div class="method-source-code" id="index-source">
             <pre><span class="ruby-comment"># File app/controllers/apps_controller.rb, line 18</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
-  <span class="ruby-identifier">redirect_to</span> <span class="ruby-string">&quot;/api&quot;</span>
+  <span class="ruby-identifier">redirect_to</span> <span class="ruby-string">&quot;/api/1/apps.html&quot;</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -191,7 +191,7 @@
 
           
           <div class="method-source-code" id="index_detection-source">
-            <pre><span class="ruby-comment"># File app/controllers/apps_controller.rb, line 73</span>
+            <pre><span class="ruby-comment"># File app/controllers/apps_controller.rb, line 72</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index_detection</span>
   <span class="ruby-identifier">email_address</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:email_address</span>]
   <span class="ruby-identifier">type</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:type</span>]
@@ -234,7 +234,7 @@
 
           
           <div class="method-source-code" id="mobile_devices-source">
-            <pre><span class="ruby-comment"># File app/controllers/apps_controller.rb, line 90</span>
+            <pre><span class="ruby-comment"># File app/controllers/apps_controller.rb, line 89</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">mobile_devices</span>
   <span class="ruby-identifier">email_address</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:email_address</span>]
   <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_email_address</span>(<span class="ruby-identifier">email_address</span>)
@@ -269,7 +269,7 @@
 
           
           <div class="method-source-code" id="new_detection-source">
-            <pre><span class="ruby-comment"># File app/controllers/apps_controller.rb, line 27</span>
+            <pre><span class="ruby-comment"># File app/controllers/apps_controller.rb, line 26</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new_detection</span>
   <span class="ruby-identifier">detection</span> = <span class="ruby-constant">Detection</span>.<span class="ruby-identifier">new</span>
   <span class="ruby-identifier">smart_product</span> = <span class="ruby-constant">SmartProduct</span>.<span class="ruby-identifier">find_by_serial_no</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:serial_no</span>])
@@ -309,7 +309,7 @@
     <span class="ruby-keyword">return</span>
   <span class="ruby-keyword">end</span>
 
-  <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-identifier">detection</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:created</span>, <span class="ruby-identifier">location</span><span class="ruby-operator">:</span> <span class="ruby-identifier">detection</span>
+  <span class="ruby-identifier">render_true</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -340,7 +340,7 @@
 
           
           <div class="method-source-code" id="register_gcm_token-source">
-            <pre><span class="ruby-comment"># File app/controllers/apps_controller.rb, line 140</span>
+            <pre><span class="ruby-comment"># File app/controllers/apps_controller.rb, line 139</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">register_gcm_token</span>
   <span class="ruby-identifier">token</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:token</span>]
   <span class="ruby-identifier">email_address</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:email_address</span>]
@@ -382,7 +382,7 @@
 
           
           <div class="method-source-code" id="register_smart_product-source">
-            <pre><span class="ruby-comment"># File app/controllers/apps_controller.rb, line 113</span>
+            <pre><span class="ruby-comment"># File app/controllers/apps_controller.rb, line 112</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">register_smart_product</span>
   <span class="ruby-identifier">email_address</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:email_address</span>]
   <span class="ruby-identifier">serial_no</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:serial_no</span>]
@@ -434,7 +434,7 @@
 
           
           <div class="method-source-code" id="smart_products-source">
-            <pre><span class="ruby-comment"># File app/controllers/apps_controller.rb, line 98</span>
+            <pre><span class="ruby-comment"># File app/controllers/apps_controller.rb, line 97</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">smart_products</span>
   <span class="ruby-identifier">email_address</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:email_address</span>]
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">email_address</span>
@@ -473,7 +473,7 @@
 
           
           <div class="method-source-code" id="update_gcm_token-source">
-            <pre><span class="ruby-comment"># File app/controllers/apps_controller.rb, line 157</span>
+            <pre><span class="ruby-comment"># File app/controllers/apps_controller.rb, line 156</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update_gcm_token</span>
   <span class="ruby-identifier">old_token</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:old_token</span>]
   <span class="ruby-identifier">new_token</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:new_token</span>]

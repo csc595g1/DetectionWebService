@@ -62,7 +62,7 @@ class AppsController < ApplicationController
       return
     end
 
-    render json: detection, status: :created, location: detection
+    render_true
   end
 
 
