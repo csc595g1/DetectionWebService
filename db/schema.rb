@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160221201428) do
+ActiveRecord::Schema.define(version: 20160221233750) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,10 +21,10 @@ ActiveRecord::Schema.define(version: 20160221201428) do
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
     t.integer  "duration_in_seconds"
-    t.integer  "device_id"
+    t.integer  "smart_product_id"
   end
 
-  add_index "detections", ["device_id"], name: "index_detections_on_device_id", using: :btree
+  add_index "detections", ["smart_product_id"], name: "index_detections_on_smart_product_id", using: :btree
 
   create_table "mobile_devices", force: :cascade do |t|
     t.integer  "user_id"
@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 20160221201428) do
     t.datetime "updated_at",    null: false
   end
 
-  add_foreign_key "detections", "smart_products", column: "device_id"
+  add_foreign_key "detections", "smart_products"
   add_foreign_key "mobile_devices", "users"
   add_foreign_key "user_smart_products", "smart_products"
   add_foreign_key "user_smart_products", "users"

@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   root 'apps#index'
 
-  post '/detection' => 'apps#detection'
+  post '/detection' => 'apps#new_detection'
   post '/register_smart_product' => 'apps#register_smart_product'
 
   post '/register_mobile_device' => 'apps#register_gcm_token'
@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   post '/update_gcm_token' => 'apps#update_gcm_token'
 
   get '/smart_products' => 'apps#smart_products'
+
+  get '/detections' => 'apps#index_detection'
 
   get '/mobile_devices' => 'apps#mobile_devices'
   get '/gcm_tokens' => 'apps#mobile_devices'

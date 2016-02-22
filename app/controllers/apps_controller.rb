@@ -4,7 +4,8 @@ class AppsController < ApplicationController
   before_action :register_gcm_params, only: [:register_gcm_token]
   before_action :update_gcm_params, only: [:update_gcm_token]
   before_action :all_smart_products_params, only: [:smart_products]
-  before_action :detection_params, only: [:detection]
+  before_action :new_detection_params, only: [:new_detection]
+  before_action :index_detection_params, only: [:index_detection]
   before_action :mobile_devices_params, only: [:mobile_devices]
 
   skip_before_filter :verify_authenticity_token
@@ -18,7 +19,7 @@ class AppsController < ApplicationController
   end
 
 
-  def detection
+  def new_detection
     detection = Detection.new
     smart_product = SmartProduct.find_by_serial_no(params[:serial_no])
     notification_message = params[:notification]
@@ -60,6 +61,21 @@ class AppsController < ApplicationController
     render json: detection, status: :created, location: detection
   end
 
+
+  def index_detection
+    email_address = params[:email_address]
+    type = params[:type]
+    user = User.find_by_email_address(email_address)
+
+    array = if (user.nil?)
+      Array.new
+    else
+      type.nil? ? user.detections : user.detections.find_all { |detection| detection.smart_product.type_of_smart_product == type}
+    end
+
+    render json: array
+  end
+
   def mobile_devices
     email_address = params[:email_address]
     user = User.find_by_email_address(email_address)
@@ -94,7 +110,7 @@ class AppsController < ApplicationController
     smart_product = SmartProduct.find_by_serial_no(serial_no)
     smart_product ||= SmartProduct.new(:serial_no => serial_no)
     smart_product.type_of_smart_product = type
-    smart_product.users << user
+    smart_product.users << user if !smart_product.users.include? user
     smart_product.save
 
     render_true
@@ -107,7 +123,8 @@ class AppsController < ApplicationController
     user ||= User.new(:email_address => email_address)
     mobile_device = MobileDevice.find_by_gcm_token(token)
     mobile_device ||= MobileDevice.new(:gcm_token => token)
-    user.mobile_devices << mobile_device
+    mobile_device.user = user
+    mobile_device.save
     user.save
     render_true
   end
@@ -214,9 +231,14 @@ class AppsController < ApplicationController
     params.permit(:email_address)
   end
 
-  def detection_params
+  def new_detection_params
     params.require(:serial_no)
     params.require(:notification)
+  end
+
+  def index_detection_params
+    params.require(:email_address)
+    params.permit(:type)
   end
 
   def mobile_devices_params
