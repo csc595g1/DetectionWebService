@@ -2,60 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="209784a4-82b4-492f-9a28-59bbe369b7a5" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/doc/fonts/Lato-Light.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/doc/fonts/Lato-LightItalic.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/doc/fonts/Lato-Regular.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/doc/fonts/Lato-RegularItalic.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/doc/fonts/SourceCodePro-Bold.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/doc/fonts/SourceCodePro-Regular.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/doc/images/add.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/doc/images/arrow_up.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/doc/images/brick.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/doc/images/brick_link.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/doc/images/bug.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/doc/images/bullet_black.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/doc/images/bullet_toggle_minus.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/doc/images/bullet_toggle_plus.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/doc/images/date.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/doc/images/delete.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/doc/images/find.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/doc/images/loadingAnimation.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/doc/images/macFFBgHack.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/doc/images/package.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/doc/images/page_green.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/doc/images/page_white_text.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/doc/images/page_white_width.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/doc/images/plugin.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/doc/images/ruby.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/doc/images/tag_blue.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/doc/images/tag_green.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/doc/images/transparent.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/doc/images/wrench.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/doc/images/wrench_orange.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/doc/images/zoom.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/doc/js/navigation.js.gz" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/doc/js/search_index.js.gz" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/doc/js/searcher.js.gz" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/config/initializers/apipie.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/doc/ApplicationController.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/doc/AppsController.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/doc/created.rid" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/doc/css/fonts.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/doc/css/rdoc.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/doc/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/doc/js/darkfish.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/doc/js/jquery.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/doc/js/navigation.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/doc/js/search.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/doc/js/search_index.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/doc/js/searcher.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/doc/table_of_contents.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.byebug_history" afterPath="$PROJECT_DIR$/.byebug_history" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/apps_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/apps_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/routes.rb" afterPath="$PROJECT_DIR$/config/routes.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/initializers/apipie.rb" afterPath="$PROJECT_DIR$/config/initializers/apipie.rb" />
     </list>
     <ignored path="JarvisWebService.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -87,11 +35,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="apipie.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="apipie.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/initializers/apipie.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.13015184">
-              <caret line="4" column="36" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="4" column="41" selection-start-line="4" selection-start-column="41" selection-end-line="4" selection-end-column="41" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Gemfile" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Gemfile">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.60954446">
+              <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -132,12 +90,12 @@
         <option value="$PROJECT_DIR$/db/migrate/20160221233750_change_column_device_id_to_smart_product_id.rb" />
         <option value="$PROJECT_DIR$/app/models/detection.rb" />
         <option value="$PROJECT_DIR$/db/seeds.rb" />
-        <option value="$PROJECT_DIR$/Gemfile" />
         <option value="$PROJECT_DIR$/tmp/pids/server.pid" />
         <option value="$PROJECT_DIR$/config/routes.rb" />
         <option value="$PROJECT_DIR$/app/views/apipie/apipies/index.html.erb" />
         <option value="$PROJECT_DIR$/app/controllers/apps_controller.rb" />
         <option value="$PROJECT_DIR$/config/initializers/apipie.rb" />
+        <option value="$PROJECT_DIR$/Gemfile" />
       </list>
     </option>
   </component>
@@ -536,7 +494,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="23" width="1440" height="797" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34477827" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32968536" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -546,7 +504,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32968536" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32831737" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33105335" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33105335" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -887,14 +845,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Gemfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.626898">
-          <caret line="50" column="20" selection-start-line="50" selection-start-column="20" selection-end-line="50" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/doc/AppsController.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -921,8 +871,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/config/initializers/apipie.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.13015184">
-          <caret line="4" column="36" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="4" column="41" selection-start-line="4" selection-start-column="41" selection-end-line="4" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gemfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.60954446">
+          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
           <folding />
         </state>
       </provider>
