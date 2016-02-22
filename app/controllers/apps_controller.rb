@@ -16,9 +16,13 @@ class AppsController < ApplicationController
 
 
   def index
+    redirect_to "/api/1/apps.html"
   end
 
-
+  api :POST, "/detection/:format", "Submit a new Detection. <br/>View method <a href='/doc/AppsController.html#method-i-new_detection'>here</a>"
+  param :notification, String, :required => true, :desc => "Message Notification"
+  param :serial_no, String, :required => true, :desc => "Serial Number of smart product that made the detection"
+  param :duration_in_sec, Integer, :required => true, :desc => "Duration of detection"
   def new_detection
     detection = Detection.new
     smart_product = SmartProduct.find_by_serial_no(params[:serial_no])
@@ -62,6 +66,9 @@ class AppsController < ApplicationController
   end
 
 
+  api :GET, "/detections/:format", "Get all detections per user.</br>View method <a href='/doc/AppsController.html#method-i-index_detection'>here</a>"
+  param :email_address, String, :required => true, :desc => "Email address to filter by"
+  param :type, String, :desc => "Filter detections by type of detection, i.e. water"
   def index_detection
     email_address = params[:email_address]
     type = params[:type]
@@ -76,12 +83,17 @@ class AppsController < ApplicationController
     render json: array
   end
 
+  api :GET, "/mobile_devices/:format", "Get all mobile devices per user."
+  api :GET, "/gcm_tokens/:format", "Get all gcm_tokens per user. </br>View method <a href='/doc/AppsController.html#method-i-mobile_devices'>here</a>"
+  param :email_address, String, :required => true, :desc => "Email address to filter by"
   def mobile_devices
     email_address = params[:email_address]
     user = User.find_by_email_address(email_address)
     render json: (user.nil?) ? Array.new : user.mobile_devices
   end
 
+  api :GET, "/smart_products/:format", "Get all smart products per user </br>View method <a href='/doc/AppsController.html#method-i-smart_products'>here</a>"
+  param :email_address, String, :required => true, :desc => "Email address to filter by"
   def smart_products
     email_address = params[:email_address]
     if email_address
@@ -93,6 +105,10 @@ class AppsController < ApplicationController
   end
 
 
+  api :POST, "/register_smart_product/:format", "Register smart product. </br>View method <a href='/doc/AppsController.html#method-i-register_smart_product'>here</a>"
+  param :email_address, String, :required => true, :desc => "Email address smart product will be registered under. Multiple users can share similar smart products"
+  param :serial_no, String, :required => true, :desc => "Serial number of smart product"
+  param :type, String, :required => true, :desc => "The type of smart product, i.e. water"
   def register_smart_product
     email_address = params[:email_address]
     serial_no = params[:serial_no]
@@ -116,6 +132,10 @@ class AppsController < ApplicationController
     render_true
   end
 
+  api :POST, "/register_gcm_token/:format", "Register gcm token/mobile device."
+  api :POST, "/register_mobile_device/:format", "Register mobile device/gcm token. </br>View method <a href='/doc/AppsController.html#method-i-register_gcm_token'>here</a>"
+  param :email_address, String, :required => true, :desc => "Email address token will be registered under"
+  param :token, String, :required => true, :desc => "Token for mobile device generated from GCM"
   def register_gcm_token
     token = params[:token]
     email_address = params[:email_address]
@@ -129,6 +149,10 @@ class AppsController < ApplicationController
     render_true
   end
 
+  api :POST, "/update_gcm_token/:format", "Update GCM Token/Mobile device."
+  api :POST, "/update_mobile_device/:format", "Register mobile device/gcm token. </br>View method <a href='/doc/AppsController.html#method-i-update_gcm_token'>here</a>"
+  param :old_token, String, :required => true, :desc => "Old GCM Token"
+  param :new_token, String, :required => true, :desc => "New GCM Token"
   def update_gcm_token
     old_token = params[:old_token]
     new_token = params[:new_token]

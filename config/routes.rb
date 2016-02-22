@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  apipie
+
   root 'apps#index'
 
   post '/detection' => 'apps#new_detection'

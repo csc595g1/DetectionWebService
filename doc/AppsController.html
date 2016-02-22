@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class AppsController - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/darkfish.js"></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="ApplicationController.html">ApplicationController</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-index">#index</a>
+    
+    <li ><a href="#method-i-index_detection">#index_detection</a>
+    
+    <li ><a href="#method-i-mobile_devices">#mobile_devices</a>
+    
+    <li ><a href="#method-i-new_detection">#new_detection</a>
+    
+    <li ><a href="#method-i-register_gcm_token">#register_gcm_token</a>
+    
+    <li ><a href="#method-i-register_smart_product">#register_smart_product</a>
+    
+    <li ><a href="#method-i-smart_products">#smart_products</a>
+    
+    <li ><a href="#method-i-update_gcm_token">#update_gcm_token</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-AppsController">
+  <h1 id="class-AppsController" class="class">
+    class AppsController
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="GOOGLE_API_KEY">GOOGLE_API_KEY
+        
+        <dd>
+        
+      
+        <dt id="GOOGLE_PROJECT_NUMBER">GOOGLE_PROJECT_NUMBER
+        
+        <dd>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-index" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">index</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="index-source">
+            <pre><span class="ruby-comment"># File app/controllers/apps_controller.rb, line 18</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
+  <span class="ruby-identifier">redirect_to</span> <span class="ruby-string">&quot;/api&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-index_detection" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">index_detection</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="index_detection-source">
+            <pre><span class="ruby-comment"># File app/controllers/apps_controller.rb, line 73</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">index_detection</span>
+  <span class="ruby-identifier">email_address</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:email_address</span>]
+  <span class="ruby-identifier">type</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:type</span>]
+  <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_email_address</span>(<span class="ruby-identifier">email_address</span>)
+
+  <span class="ruby-identifier">array</span> = <span class="ruby-keyword">if</span> (<span class="ruby-identifier">user</span>.<span class="ruby-identifier">nil?</span>)
+    <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">type</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">detections</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">detections</span>.<span class="ruby-identifier">find_all</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">detection</span><span class="ruby-operator">|</span> <span class="ruby-identifier">detection</span>.<span class="ruby-identifier">smart_product</span>.<span class="ruby-identifier">type_of_smart_product</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">type</span>}
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-identifier">array</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-mobile_devices" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">mobile_devices</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="mobile_devices-source">
+            <pre><span class="ruby-comment"># File app/controllers/apps_controller.rb, line 90</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">mobile_devices</span>
+  <span class="ruby-identifier">email_address</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:email_address</span>]
+  <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_email_address</span>(<span class="ruby-identifier">email_address</span>)
+  <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> (<span class="ruby-identifier">user</span>.<span class="ruby-identifier">nil?</span>) <span class="ruby-operator">?</span> <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">mobile_devices</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-new_detection" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new_detection</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="new_detection-source">
+            <pre><span class="ruby-comment"># File app/controllers/apps_controller.rb, line 27</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">new_detection</span>
+  <span class="ruby-identifier">detection</span> = <span class="ruby-constant">Detection</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-identifier">smart_product</span> = <span class="ruby-constant">SmartProduct</span>.<span class="ruby-identifier">find_by_serial_no</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:serial_no</span>])
+  <span class="ruby-identifier">notification_message</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:notification</span>]
+  <span class="ruby-identifier">duration</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:duration_in_sec</span>]
+
+  <span class="ruby-keyword">if</span> (<span class="ruby-identifier">smart_product</span>.<span class="ruby-identifier">nil?</span>)
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Device is null&quot;</span>
+    <span class="ruby-identifier">render_false</span>
+    <span class="ruby-keyword">return</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">detection</span>.<span class="ruby-identifier">notification</span> = <span class="ruby-identifier">notification_message</span>
+  <span class="ruby-identifier">detection</span>.<span class="ruby-identifier">smart_product</span> = <span class="ruby-identifier">smart_product</span>
+  <span class="ruby-identifier">detection</span>.<span class="ruby-identifier">duration_in_seconds</span> = <span class="ruby-identifier">duration</span>
+  <span class="ruby-identifier">detection</span>.<span class="ruby-identifier">save</span>
+
+  <span class="ruby-identifier">users</span> = <span class="ruby-identifier">smart_product</span>.<span class="ruby-identifier">users</span>
+  <span class="ruby-keyword">if</span> (<span class="ruby-identifier">users</span>.<span class="ruby-identifier">blank?</span>)
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Users array is empty&quot;</span>
+    <span class="ruby-identifier">render_false</span>
+    <span class="ruby-keyword">return</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">gcm_tokens</span> = <span class="ruby-identifier">users</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span> <span class="ruby-identifier">user</span> <span class="ruby-operator">|</span>
+    <span class="ruby-identifier">user</span>.<span class="ruby-identifier">mobile_devices</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span> <span class="ruby-identifier">mobile_device</span> <span class="ruby-operator">|</span> <span class="ruby-identifier">mobile_device</span>.<span class="ruby-identifier">gcm_token</span> }
+  <span class="ruby-keyword">end</span>.<span class="ruby-identifier">flatten</span>
+
+  <span class="ruby-identifier">users</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">user</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Posting rewards for #{user.email_address}&quot;</span>
+    <span class="ruby-identifier">post_to_rewards</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">email_address</span>, <span class="ruby-value">5</span>, <span class="ruby-node">&quot;#{smart_product.type_of_smart_product} + Detection&quot;</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">post_to_gcm</span> <span class="ruby-identifier">detection</span>.<span class="ruby-identifier">notification</span>, <span class="ruby-identifier">gcm_tokens</span>
+    <span class="ruby-string">&quot;Failed to post&quot;</span>
+    <span class="ruby-identifier">render_false</span>
+    <span class="ruby-keyword">return</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-identifier">detection</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:created</span>, <span class="ruby-identifier">location</span><span class="ruby-operator">:</span> <span class="ruby-identifier">detection</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-register_gcm_token" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">register_gcm_token</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="register_gcm_token-source">
+            <pre><span class="ruby-comment"># File app/controllers/apps_controller.rb, line 140</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">register_gcm_token</span>
+  <span class="ruby-identifier">token</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:token</span>]
+  <span class="ruby-identifier">email_address</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:email_address</span>]
+  <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_email_address</span>(<span class="ruby-identifier">email_address</span>)
+  <span class="ruby-identifier">user</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:email_address</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">email_address</span>)
+  <span class="ruby-identifier">mobile_device</span> = <span class="ruby-constant">MobileDevice</span>.<span class="ruby-identifier">find_by_gcm_token</span>(<span class="ruby-identifier">token</span>)
+  <span class="ruby-identifier">mobile_device</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">MobileDevice</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:gcm_token</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">token</span>)
+  <span class="ruby-identifier">mobile_device</span>.<span class="ruby-identifier">user</span> = <span class="ruby-identifier">user</span>
+  <span class="ruby-identifier">mobile_device</span>.<span class="ruby-identifier">save</span>
+  <span class="ruby-identifier">user</span>.<span class="ruby-identifier">save</span>
+  <span class="ruby-identifier">render_true</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-register_smart_product" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">register_smart_product</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="register_smart_product-source">
+            <pre><span class="ruby-comment"># File app/controllers/apps_controller.rb, line 113</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">register_smart_product</span>
+  <span class="ruby-identifier">email_address</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:email_address</span>]
+  <span class="ruby-identifier">serial_no</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:serial_no</span>]
+  <span class="ruby-identifier">type</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:type</span>]
+
+  <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_email_address</span>(<span class="ruby-identifier">email_address</span>)
+
+  <span class="ruby-keyword">if</span> (<span class="ruby-identifier">user</span>.<span class="ruby-identifier">nil?</span>)
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;User is nil&quot;</span>
+    <span class="ruby-identifier">render_false</span>
+    <span class="ruby-keyword">return</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-comment">#if smart_product exist, we will overwrite the user with the new register</span>
+  <span class="ruby-identifier">smart_product</span> = <span class="ruby-constant">SmartProduct</span>.<span class="ruby-identifier">find_by_serial_no</span>(<span class="ruby-identifier">serial_no</span>)
+  <span class="ruby-identifier">smart_product</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">SmartProduct</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:serial_no</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">serial_no</span>)
+  <span class="ruby-identifier">smart_product</span>.<span class="ruby-identifier">type_of_smart_product</span> = <span class="ruby-identifier">type</span>
+  <span class="ruby-identifier">smart_product</span>.<span class="ruby-identifier">users</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">user</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">smart_product</span>.<span class="ruby-identifier">users</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">user</span>
+  <span class="ruby-identifier">smart_product</span>.<span class="ruby-identifier">save</span>
+
+  <span class="ruby-identifier">render_true</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-smart_products" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">smart_products</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="smart_products-source">
+            <pre><span class="ruby-comment"># File app/controllers/apps_controller.rb, line 98</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">smart_products</span>
+  <span class="ruby-identifier">email_address</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:email_address</span>]
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">email_address</span>
+    <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_email_address</span>(<span class="ruby-identifier">email_address</span>)
+    <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> (<span class="ruby-identifier">user</span>.<span class="ruby-identifier">nil?</span>) <span class="ruby-operator">?</span> <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">smart_products</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-constant">SmartProduct</span>.<span class="ruby-identifier">all</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-update_gcm_token" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">update_gcm_token</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="update_gcm_token-source">
+            <pre><span class="ruby-comment"># File app/controllers/apps_controller.rb, line 157</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">update_gcm_token</span>
+  <span class="ruby-identifier">old_token</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:old_token</span>]
+  <span class="ruby-identifier">new_token</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:new_token</span>]
+
+  <span class="ruby-identifier">mobile_device</span> = <span class="ruby-constant">MobileDevice</span>.<span class="ruby-identifier">find_by_gcm_token</span>(<span class="ruby-identifier">old_token</span>)
+  <span class="ruby-keyword">if</span> (<span class="ruby-identifier">mobile_device</span>.<span class="ruby-identifier">nil?</span>)
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;No Mobile Device found with that GCM token&quot;</span>
+    <span class="ruby-identifier">render_false</span>
+    <span class="ruby-keyword">return</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">mobile_device</span>.<span class="ruby-identifier">gcm_token</span> = <span class="ruby-identifier">new_token</span>
+  <span class="ruby-identifier">mobile_device</span>.<span class="ruby-identifier">save</span>
+  <span class="ruby-identifier">render_true</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.2.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

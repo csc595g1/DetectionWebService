@@ -36,6 +36,8 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    apipie-rails (0.3.6)
+      json
     arel (6.0.3)
     better_errors (2.1.1)
       coderay (>= 1.0.0)
@@ -164,6 +166,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  apipie-rails
   better_errors
   byebug
   coffee-rails (~> 4.1.0)
@@ -175,6 +178,7 @@ DEPENDENCIES
   pry-rescue
   pry-stack_explorer
   rails (= 4.2.4)
+  rdoc
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   spring
