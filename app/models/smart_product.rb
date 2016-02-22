@@ -1,30 +1,26 @@
 class SmartProduct < ActiveRecord::Base
-
-
-  has_many :user_smart_products
-  has_many :detections
-  has_many :users, through: :user_smart_products
+  has_many :detections, :dependent => :nullify
+  has_and_belongs_to_many :users
 
   validates_uniqueness_of :serial_no
   validates_presence_of :serial_no, :type_of_smart_product
 
   def self.post_example
 
-    uri = URI('https://detectionservices.herokuapp.com/register_gcm_token')
+    uri = URI('http://localhost:3000/delete_smart_product')
     http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = true
+    http.use_ssl = false
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-
     headers = {
         'Content-Type' => 'application/json'
     }
 
     data = {
-        'token' => 'dkowuewk',
-        'email_address' => 'test1@test.com'
+        'serial_no' => 'd00001',
+        'email_address' => 'test2@test.com'
     }
 
-    post = Net::HTTP::Post.new(uri.path, headers)
+    post = Net::HTTP::Delete.new(uri.path, headers)
     post.body = data.to_json
 
     res = http.request(post)
@@ -33,7 +29,7 @@ class SmartProduct < ActiveRecord::Base
       when Net::HTTPSuccess, Net::HTTPRedirection
         return true
       else
-        return false
+        return res.body
     end
 
   end

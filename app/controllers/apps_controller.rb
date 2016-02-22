@@ -7,6 +7,7 @@ class AppsController < ApplicationController
   before_action :new_detection_params, only: [:new_detection]
   before_action :index_detection_params, only: [:index_detection]
   before_action :mobile_devices_params, only: [:mobile_devices]
+  before_action :delete_smart_params, only: [:delete_smart_product]
 
   skip_before_filter :verify_authenticity_token
 
@@ -34,18 +35,18 @@ class AppsController < ApplicationController
       render_false
       return
     end
-
-    detection.notification = notification_message
-    detection.smart_product = smart_product
-    detection.duration_in_seconds = duration
-    detection.save
-
     users = smart_product.users
     if (users.blank?)
       puts "Users array is empty"
       render_false
       return
     end
+
+    detection.notification = notification_message
+    detection.smart_product = smart_product
+    detection.duration_in_seconds = duration
+    detection.save
+    detection.users << users
 
     gcm_tokens = users.map do | user |
       user.mobile_devices.map { | mobile_device | mobile_device.gcm_token }
@@ -104,7 +105,6 @@ class AppsController < ApplicationController
     end
   end
 
-
   api :POST, "/register_smart_product/:format", "Register smart product. </br>View method <a href='/doc/AppsController.html#method-i-register_smart_product'>here</a>"
   param :email_address, String, :required => true, :desc => "Email address smart product will be registered under. Multiple users can share similar smart products"
   param :serial_no, String, :required => true, :desc => "Serial number of smart product"
@@ -129,6 +129,26 @@ class AppsController < ApplicationController
     smart_product.users << user if !smart_product.users.include? user
     smart_product.save
 
+    render_true
+  end
+
+  api :DELETE, "/delete_smart_product/:format", "Delete smart product </br>View method <a href='/doc/AppsController.html#method-i-delete_smart_product'>here</a>"
+  param :email_address, String, :required => true, :desc => "Email address of user"
+  param :serial_no, String, :required => true, :desc => "Serial no of user"
+  def delete_smart_product
+    email_address = params[:email_address]
+    serial_no = params[:serial_no]
+
+    user = User.find_by_email_address(email_address)
+
+    if (user.nil?)
+      puts "User is nil"
+      render_false
+      return
+    end
+
+    smart_product = SmartProduct.find_by_serial_no(serial_no)
+    user.smart_products.delete smart_product
     render_true
   end
 
@@ -267,6 +287,11 @@ class AppsController < ApplicationController
 
   def mobile_devices_params
     params.require(:email_address)
+  end
+
+  def delete_smart_params
+    params.require(:email_address)
+    params.require(:serial_no)
   end
 
 end

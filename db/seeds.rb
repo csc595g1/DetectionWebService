@@ -41,4 +41,8 @@ users.each do | user |
 end
 
 detection1 = Detection.create(:notification => "Water Leak", :smart_product => smart_product1, :duration_in_seconds => 30)
+detection1.users << smart_product1.users
 detection2 = Detection.create(:notification => "Fire sensed", :smart_product => smart_product2, :duration_in_seconds => 10)
+detection2.users << smart_product2.users
+
+

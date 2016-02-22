@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   get '/mobile_devices' => 'apps#mobile_devices'
   get '/gcm_tokens' => 'apps#mobile_devices'
 
+  delete '/delete_smart_product' => 'apps#delete_smart_product'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

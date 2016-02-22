@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160221233750) do
+ActiveRecord::Schema.define(version: 20160222083903) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,15 @@ ActiveRecord::Schema.define(version: 20160221233750) do
   end
 
   add_index "detections", ["smart_product_id"], name: "index_detections_on_smart_product_id", using: :btree
+
+  create_table "detections_users", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "detection_id"
+  end
+
+  add_index "detections_users", ["detection_id"], name: "index_detections_users_on_detection_id", using: :btree
+  add_index "detections_users", ["user_id", "detection_id"], name: "index_detections_users_on_user_id_and_detection_id", unique: true, using: :btree
+  add_index "detections_users", ["user_id"], name: "index_detections_users_on_user_id", using: :btree
 
   create_table "mobile_devices", force: :cascade do |t|
     t.integer  "user_id"
@@ -42,15 +51,16 @@ ActiveRecord::Schema.define(version: 20160221233750) do
     t.datetime "updated_at",            null: false
   end
 
-  create_table "user_smart_products", force: :cascade do |t|
+  create_table "smart_products_users", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "smart_product_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
 
-  add_index "user_smart_products", ["smart_product_id"], name: "index_user_smart_products_on_smart_product_id", using: :btree
-  add_index "user_smart_products", ["user_id"], name: "index_user_smart_products_on_user_id", using: :btree
+  add_index "smart_products_users", ["smart_product_id"], name: "index_smart_products_users_on_smart_product_id", using: :btree
+  add_index "smart_products_users", ["user_id", "smart_product_id"], name: "index_smart_products_users_on_user_id_and_smart_product_id", unique: true, using: :btree
+  add_index "smart_products_users", ["user_id"], name: "index_smart_products_users_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email_address"
@@ -59,7 +69,9 @@ ActiveRecord::Schema.define(version: 20160221233750) do
   end
 
   add_foreign_key "detections", "smart_products"
+  add_foreign_key "detections_users", "detections"
+  add_foreign_key "detections_users", "users"
   add_foreign_key "mobile_devices", "users"
-  add_foreign_key "user_smart_products", "smart_products"
-  add_foreign_key "user_smart_products", "users"
+  add_foreign_key "smart_products_users", "smart_products"
+  add_foreign_key "smart_products_users", "users"
 end
