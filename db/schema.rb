@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160222083903) do
+ActiveRecord::Schema.define(version: 20160224015301) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(version: 20160222083903) do
     t.datetime "updated_at",          null: false
     t.integer  "duration_in_seconds"
     t.integer  "smart_product_id"
+    t.string   "category"
+    t.string   "date_occurred"
   end
 
   add_index "detections", ["smart_product_id"], name: "index_detections_on_smart_product_id", using: :btree

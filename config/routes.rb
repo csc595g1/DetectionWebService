@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  VALID_EMAIL_REGEX = /.+@.+\..*/
+
   apipie
 
   root 'apps#index'
@@ -10,12 +12,15 @@ Rails.application.routes.draw do
   post '/register_mobile_device' => 'apps#register_gcm_token'
   post '/register_gcm_token' => 'apps#register_gcm_token'
 
+
   post '/update_mobile_device' => 'apps#update_gcm_token'
   post '/update_gcm_token' => 'apps#update_gcm_token'
 
   get '/smart_products' => 'apps#smart_products'
 
   get '/detections' => 'apps#index_detection'
+  match "/users/:email_address/detections", :to => 'apps#index_detection', constraints: {email_address: VALID_EMAIL_REGEX}, via: :get
+
 
   get '/mobile_devices' => 'apps#mobile_devices'
   get '/gcm_tokens' => 'apps#mobile_devices'

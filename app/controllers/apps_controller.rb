@@ -45,6 +45,8 @@ class AppsController < ApplicationController
     detection.notification = notification_message
     detection.smart_product = smart_product
     detection.duration_in_seconds = duration
+    detection.date_occurred = Date.today.strftime("%b %d")
+    detection.category = smart_product.type_of_smart_product
     detection.save
     detection.users << users
 
