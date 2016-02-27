@@ -5,6 +5,11 @@ class SmartProduct < ActiveRecord::Base
   validates_uniqueness_of :serial_no
   validates_presence_of :serial_no, :type_of_smart_product
 
+  def toString
+    appliance_name = self.appliance_name
+    string = "#{self.type_of_smart_product} sensor"
+    (appliance_name) ? "#{string} for #{appliance_name}" :  "#{string}"
+  end
   private
   base_prod_uri = 'http://detectionservices.herokuapp.com'
   base_dev_uri = 'http://localhost:3000'
@@ -117,6 +122,7 @@ class SmartProduct < ActiveRecord::Base
     data = {
         'serial_no' => 'd00004',
         'type_of_smart_product' => 'water',
+        'appliance_name' => 'Sump Pump'
 
     }
 

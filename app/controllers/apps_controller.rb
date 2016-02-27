@@ -132,9 +132,12 @@ class AppsController < ApplicationController
     smart_product.type_of_smart_product = type
     smart_product.appliance_name = appliance_name
     smart_product.users << user if !smart_product.users.include? user
-    smart_product.save
-
-    render :json => smart_product
+    if (smart_product.save)
+      post_to_rewards user.email_address, "5", "Registered #{smart_product.toString}"
+      render :json => smart_product
+    else
+      render_false
+    end
   end
 
   api :DELETE, "/delete_smart_product/:format", "Delete smart product </br>View method <a href='/doc/AppsController.html#method-i-delete_smart_product'>here</a>"
