@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   post '/update_gcm_token' => 'apps#update_gcm_token'
 
   get '/smart_products' => 'apps#smart_products'
+  match "/users/:email_address/smart_products", :to => 'apps#smart_products', constraints: {email_address: VALID_EMAIL_REGEX}, via: :get
+
 
   get '/detections' => 'apps#index_detection'
   match "/users/:email_address/detections", :to => 'apps#index_detection', constraints: {email_address: VALID_EMAIL_REGEX}, via: :get

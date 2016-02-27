@@ -104,6 +104,86 @@ class SmartProduct < ActiveRecord::Base
 
   end
 
+  def self.new_smart_product_restful
+
+    uri = URI("#{BASE_URI}/users/test1@test.com/smart_products/new")
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = false
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+    headers = {
+        'Content-Type' => 'application/json'
+    }
+
+    data = {
+        'serial_no' => 'd00004',
+        'type_of_smart_product' => 'water',
+
+    }
+
+    post = Net::HTTP::Post.new(uri.path, headers)
+    post.body = data.to_json
+
+    res = http.request(post)
+
+    case res
+      when Net::HTTPSuccess, Net::HTTPRedirection
+        return true
+      else
+        return res.body
+    end
+
+  end
+
+  def self.get_smart_products
+
+    uri = URI("#{BASE_URI}/users/test1@test.com/smart_products")
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = false
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+    headers = {
+        'Content-Type' => 'application/json'
+    }
+
+    post = Net::HTTP::Get.new(uri.path, headers)
+
+    res = http.request(post)
+
+    case res
+      when Net::HTTPSuccess, Net::HTTPRedirection
+        puts res.body
+        return true
+      else
+        return res.body
+    end
+
+  end
+
+  def self.get_detections
+
+    uri = URI("#{BASE_URI}/users/test1@test.com/detections")
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = false
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+    headers = {
+        'Content-Type' => 'application/json'
+    }
+
+    post = Net::HTTP::Get.new(uri.path, headers)
+
+    res = http.request(post)
+
+    case res
+      when Net::HTTPSuccess, Net::HTTPRedirection
+        puts res.body
+        return true
+      else
+        return res.body
+    end
+
+  end
+
+
+
   def self.delete_smart_product
 
     uri = URI("#{base_uri}/delete_smart_product")
