@@ -134,7 +134,7 @@ class AppsController < ApplicationController
     #   return
     # end
     smart_product ||= SmartProduct.new(:serial_no => serial_no)
-    # smart_product.type_of_smart_product = type
+    smart_product.type_of_smart_product ||= type
     smart_product.appliance_name = appliance_name
     smart_product.users << user if !smart_product.users.include? user
     if (smart_product.save)
