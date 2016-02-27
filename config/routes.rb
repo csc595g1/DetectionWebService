@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   post '/detection' => 'apps#new_detection'
   post '/register_smart_product' => 'apps#register_smart_product'
+  match "/users/:email_address/smart_products/new", :to => 'apps#register_smart_product', constraints: {email_address: VALID_EMAIL_REGEX}, via: :post
+
 
   post '/register_mobile_device' => 'apps#register_gcm_token'
   post '/register_gcm_token' => 'apps#register_gcm_token'
