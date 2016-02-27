@@ -56,7 +56,7 @@ class AppsController < ApplicationController
 
     users.map do |user|
       logger.info "Posting rewards for #{user.email_address}"
-      post_to_rewards user.email_address, "5", "#{smart_product.type_of_smart_product} + Detection"
+      post_to_rewards user.email_address, "5", "#{smart_product.type_of_smart_product} Detection"
     end
 
     unless post_to_gcm detection.notification, gcm_tokens
@@ -128,8 +128,13 @@ class AppsController < ApplicationController
 
     #if smart_product exist, we will overwrite the user with the new register
     smart_product = SmartProduct.find_by_serial_no(serial_no)
+    # if (smart_product.nil?)
+    #   logger.info "Smart Product is nil"
+    #   render_false
+    #   return
+    # end
     smart_product ||= SmartProduct.new(:serial_no => serial_no)
-    smart_product.type_of_smart_product = type
+    # smart_product.type_of_smart_product = type
     smart_product.appliance_name = appliance_name
     smart_product.users << user if !smart_product.users.include? user
     if (smart_product.save)

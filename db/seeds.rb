@@ -25,11 +25,11 @@ user3 ||= User.create(:email_address => email3)
 
 users =  [user1, user2, user3]
 
-smart_product1 = SmartProduct.find_by_serial_no('d00001')
-smart_product1 ||= SmartProduct.create(:serial_no => 'd00001', :type_of_smart_product => 'water', :appliance_name => 'Sump Pump')
+water_sensor = SmartProduct.find_by_serial_no('X000LP8W23')
+water_sensor ||= SmartProduct.create(:serial_no => 'X000LP8W23', :type_of_smart_product => 'water', :appliance_name => 'Sump Pump')
 
-smart_product2 = SmartProduct.find_by_serial_no('d00002')
-smart_product2 ||= SmartProduct.create(:serial_no => 'd00002', :type_of_smart_product => 'fire', :appliance_name => 'Living Room')
+fire_sensor = SmartProduct.find_by_serial_no('X000QCX44H')
+fire_sensor ||= SmartProduct.create(:serial_no => 'X000QCX44H', :type_of_smart_product => 'fire', :appliance_name => 'Living Room')
 
 user3 = User.find_by_email_address("test3@test.com")
 gcm_token = 'fqOjTU5kMI4:APA91bFY86V89bj7pw1NEczAvTJ2CtaBzsrBo1auHrHDtkkwzquk0ftvakB41lW0sx60U4giE4NjlV6aQxeSG-IzUlbsm9YfKPZlqmn5szJ6_cFkX9ItxWEQMhG4mKTIcdICTcOFZvJB'
@@ -39,15 +39,15 @@ mobile_device ||= MobileDevice.create(:gcm_token => gcm_token, :user => user3)
 
 
 users.each do | user |
-  user.smart_products << smart_product1 if !user.smart_products.include? smart_product1
-  user.smart_products << smart_product2 if !user.smart_products.include? smart_product2
+  user.smart_products << water_sensor if !user.smart_products.include? water_sensor
+  user.smart_products << fire_sensor if !user.smart_products.include? fire_sensor
   user.save
 end
 
 Detection.destroy_all
-detection1 = Detection.create(:notification => "Water Leak", :smart_product => smart_product1, :duration_in_seconds => 30, :category => smart_product1.type_of_smart_product, :date_occurred => Date.today.strftime("%b %d"))
-detection1.users << smart_product1.users
-detection2 = Detection.create(:notification => "Fire sensed", :smart_product => smart_product2, :duration_in_seconds => 10,  :category => smart_product2.type_of_smart_product, :date_occurred => Date.today.strftime("%b %d"))
-detection2.users << smart_product2.users
+detection1 = Detection.create(:notification => "Water Leak", :smart_product => water_sensor, :duration_in_seconds => 30, :category => water_sensor.type_of_smart_product, :date_occurred => Date.today.strftime("%b %d"))
+detection1.users << water_sensor.users
+detection2 = Detection.create(:notification => "Fire sensed", :smart_product => fire_sensor, :duration_in_seconds => 10,  :category => fire_sensor.type_of_smart_product, :date_occurred => Date.today.strftime("%b %d"))
+detection2.users << fire_sensor.users
 
 

@@ -89,7 +89,7 @@ class SmartProduct < ActiveRecord::Base
     }
 
     data = {
-        'serial_no' => 'd00003',
+        'serial_no' => 'X000LP8W23',
         'type_of_smart_product' => 'water',
         'email_address' => 'test1@test.com'
 
