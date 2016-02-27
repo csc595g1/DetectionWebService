@@ -31,13 +31,13 @@ class AppsController < ApplicationController
     duration = params[:duration_in_sec].to_i
 
     if (smart_product.nil?)
-      puts "Device is null"
+      logger.info "Device is null"
       render_false
       return
     end
     users = smart_product.users
     if (users.blank?)
-      puts "Users array is empty"
+      logger.info "Users array is empty"
       render_false
       return
     end
@@ -55,7 +55,7 @@ class AppsController < ApplicationController
     end.flatten
 
     users.map do |user|
-      puts "Posting rewards for #{user.email_address}"
+      logger.info "Posting rewards for #{user.email_address}"
       post_to_rewards user.email_address, "5", "#{smart_product.type_of_smart_product} + Detection"
     end
 
@@ -121,7 +121,7 @@ class AppsController < ApplicationController
     user = User.find_by_email_address(email_address)
 
     if (user.nil?)
-      puts "User is nil"
+      logger.info "User is nil"
       render_false
       return
     end
@@ -147,7 +147,7 @@ class AppsController < ApplicationController
     user = User.find_by_email_address(email_address)
 
     if (user.nil?)
-      puts "User is nil"
+      logger.info "User is nil"
       render_false
       return
     end
@@ -184,7 +184,7 @@ class AppsController < ApplicationController
 
     mobile_device = MobileDevice.find_by_gcm_token(old_token)
     if (mobile_device.nil?)
-      puts "No Mobile Device found with that GCM token"
+      logger.info "No Mobile Device found with that GCM token"
       render_false
       return
     end
@@ -222,7 +222,7 @@ class AppsController < ApplicationController
     post.body = data.to_json
 
     res = http.request(post)
-    puts res.body
+    logger.info res.body
 
     case res
       when Net::HTTPSuccess, Net::HTTPRedirection
@@ -252,7 +252,7 @@ class AppsController < ApplicationController
     post.body = { 'data' => data, 'registration_ids' => to}.to_json
 
     res = http.request(post)
-    puts res.body
+    logger.info res.body
 
     case res
       when Net::HTTPSuccess, Net::HTTPRedirection
