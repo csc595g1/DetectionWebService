@@ -23,12 +23,12 @@ class AppsController < ApplicationController
   api :POST, "/detection/:format", "Submit a new Detection. <br/>View method <a href='/doc/AppsController.html#method-i-new_detection'>here</a>"
   param :notification, String, :required => true, :desc => "Message Notification"
   param :serial_no, String, :required => true, :desc => "Serial Number of smart product that made the detection"
-  param :duration_in_sec, Integer, :required => true, :desc => "Duration of detection"
+  param :duration_in_sec, String, :required => true, :desc => "Duration of detection"
   def new_detection
     detection = Detection.new
     smart_product = SmartProduct.find_by_serial_no(params[:serial_no])
     notification_message = params[:notification]
-    duration = params[:duration_in_sec]
+    duration = params[:duration_in_sec].to_i
 
     if (smart_product.nil?)
       puts "Device is null"
@@ -56,7 +56,7 @@ class AppsController < ApplicationController
 
     users.map do |user|
       puts "Posting rewards for #{user.email_address}"
-      post_to_rewards user.email_address, 5, "#{smart_product.type_of_smart_product} + Detection"
+      post_to_rewards user.email_address, "5", "#{smart_product.type_of_smart_product} + Detection"
     end
 
     unless post_to_gcm detection.notification, gcm_tokens
@@ -110,11 +110,13 @@ class AppsController < ApplicationController
   api :POST, "/register_smart_product/:format", "Register smart product. </br>View method <a href='/doc/AppsController.html#method-i-register_smart_product'>here</a>"
   param :email_address, String, :required => true, :desc => "Email address smart product will be registered under. Multiple users can share similar smart products"
   param :serial_no, String, :required => true, :desc => "Serial number of smart product"
-  param :type, String, :required => true, :desc => "The type of smart product, i.e. water"
+  param :type_of_smart_product, String, :required => true, :desc => "The type of smart product, i.e. water"
+  param :appliance_name, String, :desc => "The type of smart product, i.e. water"
   def register_smart_product
     email_address = params[:email_address]
     serial_no = params[:serial_no]
-    type = params[:type]
+    type = params[:type_of_smart_product]
+    appliance_name = params[:appliance_name]
 
     user = User.find_by_email_address(email_address)
 
@@ -128,10 +130,11 @@ class AppsController < ApplicationController
     smart_product = SmartProduct.find_by_serial_no(serial_no)
     smart_product ||= SmartProduct.new(:serial_no => serial_no)
     smart_product.type_of_smart_product = type
+    smart_product.appliance_name = appliance_name
     smart_product.users << user if !smart_product.users.include? user
     smart_product.save
 
-    render_true
+    render :json => smart_product
   end
 
   api :DELETE, "/delete_smart_product/:format", "Delete smart product </br>View method <a href='/doc/AppsController.html#method-i-delete_smart_product'>here</a>"
@@ -219,6 +222,7 @@ class AppsController < ApplicationController
     post.body = data.to_json
 
     res = http.request(post)
+    puts res.body
 
     case res
       when Net::HTTPSuccess, Net::HTTPRedirection
@@ -248,6 +252,7 @@ class AppsController < ApplicationController
     post.body = { 'data' => data, 'registration_ids' => to}.to_json
 
     res = http.request(post)
+    puts res.body
 
     case res
       when Net::HTTPSuccess, Net::HTTPRedirection
@@ -258,9 +263,9 @@ class AppsController < ApplicationController
   end
 
   def smart_product_params
-    params.require(:token)
     params.require(:serial_no)
-    params.require(:type)
+    params.require(:type_of_smart_product)
+    params.permit(:appliance_name)
   end
 
   def register_gcm_params
@@ -284,7 +289,7 @@ class AppsController < ApplicationController
 
   def index_detection_params
     params.require(:email_address)
-    params.permit(:type)
+    params.permit(:type_of_smart_product)
   end
 
   def mobile_devices_params
