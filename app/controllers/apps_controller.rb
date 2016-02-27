@@ -12,8 +12,8 @@ class AppsController < ApplicationController
   skip_before_filter :verify_authenticity_token
 
 
-  GOOGLE_API_KEY = "AIzaSyBmWXZBpk9Ua9twgOaRcig_4jN18yjKCXM"
-  GOOGLE_PROJECT_NUMBER = "1006767494593"
+  GOOGLE_API_KEY = "AIzaSyBVpdUG9dxuMqX0LAPjhr1BUlWQuhw4zzU"
+  GOOGLE_PROJECT_NUMBER = "610693176944"
 
 
   def index
@@ -59,6 +59,8 @@ class AppsController < ApplicationController
       post_to_rewards user.email_address, "5", "#{smart_product.type_of_smart_product} Detection"
     end
 
+    logger.info "About to post to gcm"
+    logger.info "Gcm tokens #{gcm_tokens}"
     unless post_to_gcm detection.notification, gcm_tokens
       "Failed to post"
       render_false
@@ -264,7 +266,7 @@ class AppsController < ApplicationController
 
     case res
       when Net::HTTPSuccess, Net::HTTPRedirection
-        return true
+        return res.body
       else
         return nil
     end
