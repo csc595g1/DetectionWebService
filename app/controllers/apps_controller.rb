@@ -195,6 +195,7 @@ class AppsController < ApplicationController
     mobile_device = MobileDevice.find_by_gcm_token(old_token)
     if (mobile_device.nil?)
       logger.info "No Mobile Device found with that GCM token"
+      puts "No Mobile Device found with that GCM token"
       render_false
       return
     end
@@ -203,6 +204,8 @@ class AppsController < ApplicationController
     if mobile_device.save
       render :json => mobile_device
     else
+      logger.info "Could not save #{mobile_device.errors}"
+      puts "Could not save #{mobile_device.errors}"
       render_false
     end
   end
