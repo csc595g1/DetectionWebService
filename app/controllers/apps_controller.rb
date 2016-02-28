@@ -204,8 +204,7 @@ class AppsController < ApplicationController
     if mobile_device.save
       render :json => mobile_device
     else
-      logger.debug "Could not save #{mobile_device.errors}"
-      logger.info "Could not save #{mobile_device.errors}"
+      logger.debug "Could not save #{mobile_device.errors.inspect}"
       puts "Could not save #{mobile_device.errors}"
       render_false
     end
