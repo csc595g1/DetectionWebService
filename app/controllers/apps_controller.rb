@@ -200,8 +200,11 @@ class AppsController < ApplicationController
     end
 
     mobile_device.gcm_token = new_token
-    mobile_device.save
-    render_true
+    if mobile_device.save
+      render :json => mobile_device
+    else
+      render_false
+    end
   end
 
 
