@@ -13,10 +13,13 @@ Rails.application.routes.draw do
 
   post '/register_mobile_device' => 'apps#register_gcm_token'
   post '/register_gcm_token' => 'apps#register_gcm_token'
+  match "/users/:email_address/gcm_tokens/:token/new", :to => 'apps#register_gcm_token', constraints: {email_address: VALID_EMAIL_REGEX}, via: :post
 
 
   post '/update_mobile_device' => 'apps#update_gcm_token'
   post '/update_gcm_token' => 'apps#update_gcm_token'
+  match "/update_gcm_token/:old_token/:new_token", :to => 'apps#update_gcm_token', via: :post
+
 
   get '/smart_products' => 'apps#smart_products'
   match "/users/:email_address/smart_products", :to => 'apps#smart_products', constraints: {email_address: VALID_EMAIL_REGEX}, via: :get
@@ -30,6 +33,8 @@ Rails.application.routes.draw do
   get '/gcm_tokens' => 'apps#mobile_devices'
 
   delete '/delete_smart_product' => 'apps#delete_smart_product'
+  match "/users/:email_address/smart_products/:serial_no/delete", :to => 'apps#smart_products', constraints: {email_address: VALID_EMAIL_REGEX}, via: :delete
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
