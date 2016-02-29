@@ -27,7 +27,7 @@ class AppsController < ApplicationController
   def new_detection
     detection = Detection.new
     smart_product = SmartProduct.find_by_serial_no(params[:serial_no])
-    notification_message = params[:notification]
+    notification = params[:notification]
     duration = params[:duration_in_sec].to_i
 
     if (smart_product.nil?)
@@ -42,7 +42,7 @@ class AppsController < ApplicationController
       return
     end
 
-    detection.notification = notification_message
+    detection.notification = notification
     detection.smart_product = smart_product
     detection.duration_in_seconds = duration
     detection.date_occurred = Date.today.strftime("%b %d")
@@ -61,7 +61,10 @@ class AppsController < ApplicationController
 
     logger.info "About to post to gcm"
     logger.info "Gcm tokens #{gcm_tokens}"
-    unless post_to_gcm detection.notification, gcm_tokens
+    data = {:message => notification, :appliance_name => detection.smart_product.appliance_name, :date => detection.date_occurred, :category => detection.category, :duration_in_sec => duration}
+    logger.info "What I am about to send to gcm: #{data}"
+
+    unless post_to_gcm data, gcm_tokens
       "Failed to post"
       render_false
       return
@@ -250,10 +253,9 @@ class AppsController < ApplicationController
   end
 
 
-  def post_to_gcm notification, token_array
+  def post_to_gcm data, token_array
 
     to = token_array
-    data = {:message => notification}
     headers = {
         'project_id' => GOOGLE_PROJECT_NUMBER,
         "Authorization" => 'key=' + GOOGLE_API_KEY,
@@ -268,7 +270,8 @@ class AppsController < ApplicationController
     post.body = { 'data' => data, 'registration_ids' => to}.to_json
 
     res = http.request(post)
-    logger.info res.body
+    logger.info "result from gcm #{res.body}"
+    logger.info "status from gcm #{res}"
 
     case res
       when Net::HTTPSuccess, Net::HTTPRedirection
