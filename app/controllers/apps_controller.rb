@@ -182,9 +182,14 @@ class AppsController < ApplicationController
     mobile_device = MobileDevice.find_by_gcm_token(token)
     mobile_device ||= MobileDevice.new(:gcm_token => token)
     mobile_device.user = user
-    mobile_device.save
     user.save
-    render_true
+    if mobile_device.save
+      render json: mobile_device
+    else
+      logger.debug "Could not save #{mobile_device.errors.inspect}"
+      puts "Could not save #{mobile_device.errors}"
+      render_false
+    end
   end
 
   api :POST, "/update_gcm_token/:format", "Update GCM Token/Mobile device."
