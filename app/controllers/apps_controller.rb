@@ -170,6 +170,8 @@ class AppsController < ApplicationController
     if user.save
       render_true
     else
+      logger.debug "Could not save #{user.errors.inspect}"
+      puts "Could not save #{user.errors.inspect}"
       render_false
     end
   end
