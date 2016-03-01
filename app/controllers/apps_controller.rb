@@ -190,7 +190,7 @@ class AppsController < ApplicationController
     mobile_device.user = user
     user.save
     if mobile_device.save
-      render json: mobile_devicell
+      render json: mobile_device
     else
       logger.debug "Could not save #{mobile_device.errors.inspect}"
       puts "Could not save #{mobile_device.errors}"
