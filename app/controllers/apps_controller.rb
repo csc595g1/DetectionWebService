@@ -167,7 +167,11 @@ class AppsController < ApplicationController
 
     smart_product = SmartProduct.find_by_serial_no(serial_no)
     user.smart_products.delete smart_product
-    render_true
+    if user.save
+      render_true
+    else
+      render_false
+    end
   end
 
   api :POST, "/register_gcm_token/:format", "Register gcm token/mobile device."
@@ -184,7 +188,7 @@ class AppsController < ApplicationController
     mobile_device.user = user
     user.save
     if mobile_device.save
-      render json: mobile_device
+      render json: mobile_devicell
     else
       logger.debug "Could not save #{mobile_device.errors.inspect}"
       puts "Could not save #{mobile_device.errors}"
