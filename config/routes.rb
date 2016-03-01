@@ -33,7 +33,7 @@ Rails.application.routes.draw do
   get '/gcm_tokens' => 'apps#mobile_devices'
 
   delete '/delete_smart_product' => 'apps#delete_smart_product'
-  match "/users/:email_address/smart_products/:serial_no/delete", :to => 'apps#smart_products', constraints: {email_address: VALID_EMAIL_REGEX}, via: :delete
+  match "/users/:email_address/smart_products/:serial_no/delete", :to => 'apps#delete_smart_products', constraints: {email_address: VALID_EMAIL_REGEX}, via: :delete
 
 
   # The priority is based upon order of creation: first created -> highest priority.
