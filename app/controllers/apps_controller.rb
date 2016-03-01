@@ -133,12 +133,11 @@ class AppsController < ApplicationController
 
     #if smart_product exist, we will overwrite the user with the new register
     smart_product = SmartProduct.find_by_serial_no(serial_no)
-    # if (smart_product.nil?)
-    #   logger.info "Smart Product is nil"
-    #   render_false
-    #   return
-    # end
-    smart_product ||= SmartProduct.new(:serial_no => serial_no)
+    if (smart_product.nil?)
+      logger.info "Smart Product is nil"
+      render_false
+      return
+    end
     smart_product.type_of_smart_product ||= type
     smart_product.appliance_name = appliance_name
     smart_product.users << user if !smart_product.users.include? user
