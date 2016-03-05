@@ -112,6 +112,18 @@ class AppsController < ApplicationController
     end
   end
 
+  api :GET, "/smart_products_count/:format", "Get all smart products per user </br>View method <a href='/doc/AppsController.html#method-i-smart_products'>here</a>"
+  param :email_address, String, :required => true, :desc => "Email address to filter by"
+  def smart_products_count
+    email_address = params[:email_address]
+    user = User.find_by_email_address(email_address)
+    if (user.nil?)
+      render_false
+      return
+    end
+    render json: {:total_smart_products => user.smart_products.count}
+  end
+
   api :POST, "/register_smart_product/:format", "Register smart product. </br>View method <a href='/doc/AppsController.html#method-i-register_smart_product'>here</a>"
   param :email_address, String, :required => true, :desc => "Email address smart product will be registered under. Multiple users can share similar smart products"
   param :serial_no, String, :required => true, :desc => "Serial number of smart product"

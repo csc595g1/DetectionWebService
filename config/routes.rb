@@ -24,6 +24,10 @@ Rails.application.routes.draw do
   get '/smart_products' => 'apps#smart_products'
   match "/users/:email_address/smart_products", :to => 'apps#smart_products', constraints: {email_address: VALID_EMAIL_REGEX}, via: :get
 
+  get '/smart_products_count' => 'apps#smart_products_count'
+  match "/users/:email_address/smart_products_count", :to => 'apps#smart_products_count', constraints: {email_address: VALID_EMAIL_REGEX}, via: :get
+
+
 
   get '/detections' => 'apps#index_detection'
   match "/users/:email_address/detections", :to => 'apps#index_detection', constraints: {email_address: VALID_EMAIL_REGEX}, via: :get
