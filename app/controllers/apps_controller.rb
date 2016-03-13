@@ -52,7 +52,7 @@ class AppsController < ApplicationController
 
     gcm_tokens = users.map do | user |
       user.mobile_devices.map { | mobile_device | mobile_device.gcm_token }
-    end.flatten
+    end.flatten.uniq
 
     users.map do |user|
       logger.info "Posting rewards for #{user.email_address}"
