@@ -56,7 +56,7 @@ class AppsController < ApplicationController
 
     users.map do |user|
       logger.info "Posting rewards for #{user.email_address}"
-      post_to_rewards user.email_address, "5", "#{smart_product.type_of_smart_product} Detection"
+      post_to_rewards user.email_address, "1", "#{smart_product.type_of_smart_product} Detection"
     end
 
     logger.info "About to post to gcm"
@@ -179,6 +179,7 @@ class AppsController < ApplicationController
     smart_product = SmartProduct.find_by_serial_no(serial_no)
     user.smart_products.delete smart_product
     if user.save
+      post_to_rewards user.email_address, "-5", "Removed #{smart_product.toString}"
       render_true
     else
       logger.debug "Could not save #{user.errors.inspect}"
